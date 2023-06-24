@@ -3,7 +3,7 @@ function getComputerChoice() {
     /*Randomly generate a choice of 
     rock, paper, or scissors for the computer */
     
-    choice = Math.floor(Math.random() * 3) + 1;
+    let choice = Math.floor(Math.random() * 3) + 1;
 
     switch(choice) {
         case 1:
@@ -19,65 +19,119 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+
+    /* Plays one round of rock, paper, scissors */
     
-    playerSelectionLower = playerSelection.toLowerCase();
+    let playerSelectionLower = playerSelection.toLowerCase();
 
-    computerSelectionLower = computerSelection.toLowerCase();
+    let computerSelectionLower = computerSelection.toLowerCase();
 
-    winMessage = "You Win! " + playerSelection + " beats " 
+    let winMessage = "You Win! " + playerSelection + " beats " 
     + computerSelection;
 
-    loseMessage = "You Lose! " + computerSelection + " beats " 
+    let loseMessage = "You Lose! " + computerSelection + " beats " 
     + playerSelection; 
 
-    tieMessage = "Tie game! Go again!"
+    let tieMessage = "Tie round!"
+
+    let winner = "";
 
      if (playerSelectionLower === "rock") {
         
         if (computerSelectionLower === "scissors") {
-            return winMessage;
+            console.log(winMessage);
+            winner = "player";
+            return winner;
         }
 
         else if (computerSelectionLower == "paper") {
-            return loseMessage;
+            console.log(loseMessage);
+            winner = "computer";
+            return winner;
         }
 
         else {
-            return tieMessage;
+            console.log(tieMessage);
+            return winner = "tie";
         }
      }
 
-     if (playerSelection === "paper") {
+     else if (playerSelectionLower === "paper") {
 
-        if (computerSelection === "rock") {
-            return winMessage;
+        if (computerSelectionLower === "rock") {
+            console.log(winMessage);
+            winner = "player";
+            return winner;
         }
 
-        else if (computerSelection === "scissors") {
-            return loseMessage;
+        else if (computerSelectionLower === "scissors") {
+            console.log(loseMessage);
+            winner = "computer";
+            return winner;
         }
 
         else {
-            return tieMessage;
+            console.log(tieMessage);
+            return winner = "tie";
         }
      }
     
-     if (playerSelection === "scissors") {
+     else if (playerSelectionLower === "scissors") {
 
-        if (computerSelection === "paper") {
-            return winMessage;
+        if (computerSelectionLower === "paper") {
+            console.log(winMessage);
+            winner = "player";
+            return winner;
         }
 
-        else if (computerSelection === "rock") {
-            return loseMessage;
+        else if (computerSelectionLower === "rock") {
+            console.log(loseMessage);
+            winner = "computer";
+            return winner;
         }
 
         else {
-            return tieMessage;
+            console.log(tieMessage);
+            return winner = "tie";
         }
      }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+
+    /* Controls the game loop
+    Does not yet handle invalid input */
+
+    let playerWins = 0;
+    let computerWins = 0;
+
+    
+    for (i = 1; i <= 5; i++) {
+        console.log("Round #" + i)
+        playerSelection = prompt ("Rock, paper, or scissors?")
+        let winner = playRound(playerSelection, getComputerChoice());
+
+        if (winner === "player") {
+            playerWins++;
+        }
+
+        else if (winner === "computer") {
+            computerWins++;
+        }
+    }
+
+    if (playerWins > computerWins) {
+        console.log("You win!");
+    }
+    else if (playerWins < computerWins) {
+        console.log("You lose!");
+    }
+    else {
+        console.log("Tie game!");
+    }
+
+    console.log("Score: " + playerWins + " to " + computerWins); 
+
+}
+
+game();
