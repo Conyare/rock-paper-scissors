@@ -1,3 +1,58 @@
+
+const buttons = document.querySelectorAll('button');
+const resultsDisplay = document.querySelector('#results');
+const score = document.querySelector('#score');
+
+let playerScore = 0;
+let computerScore = 0;
+let numRounds = 0;
+
+
+buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        let winner = playRound(btn.textContent, getComputerChoice());
+
+        if (numRounds === 0) {
+            playerScore = 0;
+            computerScore = 0;
+        }
+
+        if (winner === "player") {
+            playerScore++;
+        }
+        else if (winner === "computer") {
+            computerScore++;
+        }
+
+      
+        score.textContent = "Score: " + playerScore + " to " + computerScore;
+
+        numRounds++;
+
+        if (playerScore === 5 || computerScore === 5) {
+
+            let gameOverMessage = "";
+
+            if (playerScore > computerScore) {
+                gameOverMessage = "Game over, you win!";
+            }
+            else if (playerScore < computerScore) {
+                gameOverMessage = "Game over. You lose :(";
+            }
+    
+            const gameOver = document.createElement('h2');
+            gameOver.textContent = gameOverMessage;
+            resultsDisplay.appendChild(gameOver);
+            numRounds = 0;
+        }
+        
+    });
+});
+
+
+
+
+
 function getComputerChoice() {
 
     /*Randomly generate a choice of 
@@ -27,7 +82,7 @@ function playRound(playerSelection, computerSelection) {
     let computerSelectionLower = computerSelection.toLowerCase();
 
     let winMessage = "You Win! " + playerSelection + " beats " 
-    + computerSelection;
+    + computerSelection ;
 
     let loseMessage = "You Lose! " + computerSelection + " beats " 
     + playerSelection; 
@@ -39,19 +94,28 @@ function playRound(playerSelection, computerSelection) {
      if (playerSelectionLower === "rock") {
         
         if (computerSelectionLower === "scissors") {
-            console.log(winMessage);
+            const result = document.createTextNode(winMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             winner = "player";
             return winner;
         }
 
         else if (computerSelectionLower == "paper") {
-            console.log(loseMessage);
+            const result = document.createTextNode(loseMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             winner = "computer";
             return winner;
         }
 
         else {
-            console.log(tieMessage);
+            const result = document.createTextNode(tieMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             return winner = "tie";
         }
      }
@@ -59,19 +123,28 @@ function playRound(playerSelection, computerSelection) {
      else if (playerSelectionLower === "paper") {
 
         if (computerSelectionLower === "rock") {
-            console.log(winMessage);
+            const result = document.createTextNode(winMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             winner = "player";
             return winner;
         }
 
         else if (computerSelectionLower === "scissors") {
-            console.log(loseMessage);
+            const result = document.createTextNode(loseMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             winner = "computer";
             return winner;
         }
 
         else {
-            console.log(tieMessage);
+            const result = document.createTextNode(tieMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             return winner = "tie";
         }
      }
@@ -79,19 +152,28 @@ function playRound(playerSelection, computerSelection) {
      else if (playerSelectionLower === "scissors") {
 
         if (computerSelectionLower === "paper") {
-            console.log(winMessage);
+            const result = document.createTextNode(winMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             winner = "player";
             return winner;
         }
 
         else if (computerSelectionLower === "rock") {
-            console.log(loseMessage);
+            const result = document.createTextNode(loseMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             winner = "computer";
             return winner;
         }
 
         else {
-            console.log(tieMessage);
+            const result = document.createTextNode(tieMessage);
+            const lineBreak = document.createElement('br');
+            resultsDisplay.appendChild(result);
+            resultsDisplay.appendChild(lineBreak);
             return winner = "tie";
         }
      }
@@ -99,38 +181,7 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    /* Controls the game loop
-    Does not yet handle invalid input */
-
-    let playerWins = 0;
-    let computerWins = 0;
-
-    
-    for (i = 1; i <= 5; i++) {
-        console.log("Round #" + i)
-        playerSelection = prompt ("Rock, paper, or scissors?")
-        let winner = playRound(playerSelection, getComputerChoice());
-
-        if (winner === "player") {
-            playerWins++;
-        }
-
-        else if (winner === "computer") {
-            computerWins++;
-        }
-    }
-
-    if (playerWins > computerWins) {
-        console.log("You win!");
-    }
-    else if (playerWins < computerWins) {
-        console.log("You lose!");
-    }
-    else {
-        console.log("Tie game!");
-    }
-
-    console.log("Score: " + playerWins + " to " + computerWins); 
+   
 
 }
 
